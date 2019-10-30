@@ -1,0 +1,24 @@
+
+.color {
+    color:blue;
+    text-align: center;
+    font-size: 2rem;
+    text-decoration: underline;
+}
+
+.popular-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.film-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin:50px
+}
+
+.film-card img {
+    height: 200px;
+}
