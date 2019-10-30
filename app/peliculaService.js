@@ -8,7 +8,7 @@ peliculaFactory.factory("peliculaService", function($http) {
   };
 
   service.getTopRated = function(){
-    return $http.get("https://api.themoviedb.org/3/movie/top_rated?api_key=63e96a1e85012423c4da2cc53a2dd05f&language=es-ES&page=1")
+    return $http.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${__env.APIKEY}&language=es-ES&page=1`)
   }
 
   return service;
