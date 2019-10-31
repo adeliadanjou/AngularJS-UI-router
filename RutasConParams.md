@@ -18,3 +18,8 @@
 
 YA FUNCIONA LA RUTA, Ahora le pasamos los parametros para buscar por esa id que tenemos en la url:
 
+6) Nos vamos al js del componente de details y usamos un servicio que está en nuestra factory al que le tenemos que pasar el id,
+para ello usaremos `$stateParams.movieId` <--- movieId es como llamamos al parámetro en el state de app.js
+con esta simple línea ya tenemos el id.
+
+7) a pintar en el html y listo!
