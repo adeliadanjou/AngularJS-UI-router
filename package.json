@@ -4,8 +4,7 @@
   "description": "1) crear app.js, index.html, app.css",
   "main": "app.js",
   "dependencies": {
-    "@types/angular": "^1.6.56",
-    "dotenv": "^8.2.0"
+    "@types/angular": "^1.6.56"
   },
   "devDependencies": {},
   "scripts": {

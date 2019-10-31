@@ -1,97 +1,63 @@
-# PRIMEROS PASOS:
 
-0) npm init para crear package.json
-1) crear una carpeta app y dentro meter app.js, index.html, app.css
+# RUTAS CON UI-ROUTER:
 
-- index.html:
-
-a) Creamos con ! un documento html
-b) le ponemos en la etiqueta <html ng-app="videoclubApp">
-c) añadimos los siguientes scripts y link:
-
-`<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>
-<script src="app.js"></script>
-<link rel="stylesheet" href="app.css"> `
-
-d) ponemos dentro del body:
-
-  `<body ng-controller='appController'></body>`
-
-- app.js:
-
-a) Iniciamos la app:
-
-  ` var app = angular.module("videoclubApp", []); `
-
-b) Iniciamos controlador de index.html:
-
-  ` app.controller('appController', ['$scope', function($scope){}]) `
-
-
-# ACTIVAR RUTAS:
 
 - index.html: 
 1) Ponemos el siguiente script, que es instalar lo de las rutas -->      
-`<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>` 
+`
+<script src="//unpkg.com/@uirouter/angularjs@1.0.7/release/angular-ui-router.min.js"></script>
+ `
 
-2) también un ng-view en un div (es como el router-outlet)
+2) Activarlas:
+## Para enlaces: Usaremos ui-sref="name_del_state"
+`  <a ui-sref="about" ui-sref-active="active">About</a>`
 
- ` <div ng-view></div> `
-
-3) dentro del <head>   AQUÍ   </head> hay que ponerle la url base que queremos en nuestra aplicacion:
-
- `<head>   <base href="http://localhost/videoclub/app/"/> </head> `
+## Para rutas:
+ `  <ui-view></ui-view> `
 
 - app.js: 
 
-1) Ponemos 'ngRoute' en nuestro var app = angular.module("videoclubApp", []) para activar las rutas 
+1) Ponemos 'ui.router' en nuestro var app = angular.module("videoclubApp", [***AQUÍ***]) para activar las rutas 
 
-  ` var app = angular.module("videoclubApp", ['ngRoute']); ` 
+  ` var app = angular.module("videoclubApp", ['ui.router']); ` 
 
-2) Agregamos el app.config:
-Básicamente el locationProvider es para quitarle el ! y el # que trae por defecto la app de AngularJS.
-El routeProvider es para hacer las rutas.
-El otherwise para si no está la ruta que pasamos en la url, redireccionar a lo que sea.
+2) Agregamos $stateProvider(para crear rutas/states) y "urlRouterProvider(para redirección) al app.config:
 
-  `app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-        $locationProvider.hashPrefix(''); 
-        $locationProvider.html5Mode({
-              enabled: true,
-              requireBase: false
-          }); `
+  `app.config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) { } ]);`
 
-  $routeProvider.otherwise({redirectTo: '/'}); }]);
-
-···· AHORA EN LOS COMPONENTES:
-
- - peliculas.js:
-
- 1) Hacemos el archivo de configuración para establecer la ruta que tendrá, el templateUrl que usaremos y el controllador
-
-` peliculas.config(function($routeProvider){ 
-    $routeProvider.when("/", { 
-         templateUrl: "peliculas/peliculas.html",
-        controller: "peliculasController"
-    });}); `
+3) Dentro de la función del app.config hacemos un var states, que es un array, con las rutas:
+ 
+  `var states = [
+    { name: 'hello', url: '/hello', templateUrl: 'hello', controller: 'helloController' },
+    { name: 'about', url: '/about', templateUrl: 'about', controller: 'aboutController' },
+    { name: 'people',url: '/people',templateUrl: 'people', controller:'peopleController'}]`
 
 
-2) Le decimos cómo se llama el controller y hacemos la function que tendrá todas las movidas de js que tendrá el componente en cuestión:
-
- ` peliculas.controller("peliculasController", function($scope){  });`
-
-3) Esos componentes tenemos que enlazarlos con app.js, para ello vamos a app.js y los ponemos en el app.module:
-
- `var app = angular.module("videoclubApp", ['ngRoute', 'peliculasComponent', 'otroComponente', 'otroMás']);`
+4) Registramos los states con un loop:
+   `states.forEach(function(state) { $stateProvider.state(state); });`
 
 
- # $HTPP
+### OTRA MANERA DE HACER PASOS 3 Y 4 MENOS PRO:
 
- 1) Ponemos $http en la function del controller:
- `peliculas.controller("peliculasController", function($scope, $http){})`
+ `$stateProvider
+        .state("main", {
+            url: "/",
+            template: "<h1>Hola soy main!</h1>"
+          })
 
- 2) Dentro de esa function usamos http:
-         `$http.get("urlAPI" ó "fichero.json").then(function(res){})`
+          $stateProvider
+          .state("peliculas", {
+              url: "/pelis",
+              templateUrl: "./peliculas/peliculas.html",
+              controller: "peliculasController"
+            })
 
- 3) Manejamos la respuesta dentro de {}
+            $stateProvider
+            .state("otherwise", { url : '/pelis'})
+            
+            $urlRouterProvider.otherwise("/pelis");
+        `
+
+
+ 
 

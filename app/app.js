@@ -1,4 +1,4 @@
-var app = angular.module("videoclubApp", ['ngRoute', 'peliculasComponent', 'peliculaFactory']);
+var app = angular.module("videoclubApp", ['ui.router', 'popularesComponent','topRatedComponent', 'peliculaFactory']);
 
 app.controller('appController', function($scope) {
 
@@ -6,12 +6,35 @@ app.controller('appController', function($scope) {
  
 });
 
-app.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-        $locationProvider.hashPrefix(''); 
-        $locationProvider.html5Mode({
-              enabled: true,
-              requireBase: false
-          });
+app.config(
+    ["$stateProvider", "$urlRouterProvider",
+      function($stateProvider, $urlRouterProvider) {
+  
+        $stateProvider
+        .state("main", {
+            url: "/",
+            template: "<h1>Hola soy main!</h1>"
+          })
 
-  $routeProvider.otherwise({redirectTo: '/'});
- }]);
+          $stateProvider
+          .state("populares", {
+              url: "/populares",
+              templateUrl: "./peliculas/populares/populares.html",
+              controller: "popularesController"
+            })
+
+            $stateProvider
+          .state("topRated", {
+              url: "/topRated",
+              templateUrl: "./peliculas/topRated/topRated.html",
+              controller: "topRatedController"
+            })
+
+            $stateProvider
+            .state("otherwise", { url : '/'})
+            
+            $urlRouterProvider.otherwise("/");
+        
+  
+      }
+    ]);
