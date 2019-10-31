@@ -4,9 +4,7 @@
 
 - index.html: 
 1) Ponemos el siguiente script, que es instalar lo de las rutas -->      
-`
-<script src="//unpkg.com/@uirouter/angularjs@1.0.7/release/angular-ui-router.min.js"></script>
- `
+`<script src="//unpkg.com/@uirouter/angularjs@1.0.7/release/angular-ui-router.min.js"></script>`
 
 2) Activarlas:
 ## Para enlaces: Usaremos ui-sref="name_del_state"
@@ -39,7 +37,7 @@
 
 ### OTRA MANERA DE HACER PASOS 3 Y 4 MENOS PRO:
 
- `$stateProvider
+ ```$stateProvider
         .state("main", {
             url: "/",
             template: "<h1>Hola soy main!</h1>"
@@ -55,8 +53,7 @@
             $stateProvider
             .state("otherwise", { url : '/pelis'})
             
-            $urlRouterProvider.otherwise("/pelis");
-        `
+            $urlRouterProvider.otherwise("/pelis");```
 
 
  
