@@ -13,7 +13,7 @@ app.config(
         $stateProvider
         .state("main", {
             url: "/",
-            template: "<h1>Hola soy main!</h1>"
+            template: "<div  class='main'><h1 >Hola soy Main! ^^ </h1> <h1>Encantado de conocerte!</h1> <img class='little-main' src='./images/MAIN.jpg'></div>"
           })
 
           $stateProvider
