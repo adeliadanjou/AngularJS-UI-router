@@ -1,0 +1,16 @@
+<div class="movie-details">
+  <h3>{{ movie.original_title }}</h3>
+  <p>Popularity: {{ movie.popularity }}</p>
+  <img
+    ui-sref="movieDetails({movieId: movie.id})"
+    src="https://image.tmdb.org/t/p/w200/{{ movie.poster_path }}"
+    alt="image"
+  />
+  <div class="argumento">
+        <span>Argument:</span>
+        <p>{{ movie.overview }}</p>
+  </div>
+ 
+
+  <p>{{ movie.movie }}</p>
+</div>

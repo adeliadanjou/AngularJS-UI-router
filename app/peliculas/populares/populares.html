@@ -1,17 +1,16 @@
 
-    
-
     <h2>PELÍCULAS POPULARES:</h2>
 
-  <div class="popular-cards">
+  <div class="popular-cards" >
 
-        <div class="film-card" ng-repeat="movie in movies">
+            <div  class="film-card" ng-repeat="movie in movies">
 
                 <h5>{{movie.original_title}}</h2>
-                <img src="{{'https://image.tmdb.org/t/p/w200/'+movie.poster_path}}" alt="image">
+                <img ui-sref="movieDetails({movieId: movie.id})" src="https://image.tmdb.org/t/p/w200/{{movie.poster_path}}" alt="image">
             </div>
 
   </div>
 
 
     
+ 

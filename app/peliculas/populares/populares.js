@@ -8,6 +8,12 @@ populares.controller("popularesController", ["$scope", "$http", function($scope,
         console.log(res.data.results);
         $scope.movies = res.data.results
     })
+
+
+    // $scope.$on('emitirValor', function(event,data){
+    //     console.log(data)
+    // })
     
+    // $scope.$broadcast('emitirValor', 3);
 
 }]);
