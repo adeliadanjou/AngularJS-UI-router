@@ -3,6 +3,7 @@ var app = angular.module("videoclubApp", [
   "popularesComponent",
   "topRatedComponent",
   "movieDetailsComponent",
+  "newComponent",
   "peliculaFactory"
 ]);
 
@@ -34,6 +35,12 @@ app.config([
       url: "/populares/:movieId",
       templateUrl: "./peliculas/populares/movieDetails/movieDetails.html",
       controller: "movieDetailsController"
+    });
+
+    $stateProvider.state("newfilm", {
+      url: "/new",
+      templateUrl: "./new/new.html",
+      controller: "newController"
     });
 
     $stateProvider.state("topRated", {
